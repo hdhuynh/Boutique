@@ -1,0 +1,124 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boutique Estate Agency</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+
+<body>
+
+    <header class="container">
+        <div style="background-color: #061F3E;" class="hidden-xs">
+            <img src="~/Images/header-sm.JPG" style="height:100px" />
+            <div style="display:inline-block;">
+                <span style="font-size: 2em; color: #B9A98F">Boutique </span>
+                <span style="font-size: 1.2em; color: #888">Estate Agency</span>
+            </div>
+        </div>
+
+        <div class="navbar navbar-default" style="margin-top: 5px">
+            <div class="container">
+
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div>
+
+                        <img src="~/Images/logo_transparent.png" class="visible-xs pull-left" />
+                        @*@Html.ActionLink("Boutique Estate Agency", "Index", "Home", null, new { @class = "navbar-brand visible-xs" })*@
+                        <a href="@Url.Action("Index", "Home")" class="navbar-brand visible-xs">
+                            <span style="font-size: 0.9em; color: #B9A98F">Boutique </span>
+                            <span style="font-size: 0.7em; color: #888">Estate Agency</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="navbar-collapse collapse col-sm-8 col-sm-offset-4">
+                        <ul class="nav navbar-nav row" style="width:100%">
+                            <li class="nav col-sm-2">@Html.ActionLink("Home", "Index", "Home")</li>
+                            <li class="nav col-sm-2">@Html.ActionLink("Buy", "Index", "Home")</li>
+                            <li class="nav col-sm-2"><a id="navSell" href="#">Sell</a></li>
+                            <li class="nav col-sm-2">@Html.ActionLink("Lease", "Index", "Home")</li>
+                            <li class="nav col-sm-2">@Html.ActionLink("Tips", "Index", "Home")</li>
+                            <li class="nav col-sm-2">@Html.ActionLink("About", "About", "Home")</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @*<img src="~/Images/Logo_white_bg_sm.jpg" class="visible-xs pull-right " />*@
+    </header>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p class="text-right">&copy; @DateTime.Now.Year - Designed by iBusinis</p>
+        </footer>
+    </div>
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalSell" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="color: #385074; background-color: #e8e8e8">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h3 class="modal-title">Sales Enquiry</h3>
+                </div>
+                <div class="modal-body">
+                    @*@Html.RenderPartial("~/Views/SendMailer/_SellInfo.cshtml");*@
+                    <div class="row">
+                        <label class="col-sm-4  text-right" for="contact_name">Name: </label>
+                        <div class="col-sm-5" style="padding: 0 15px"><input type="text" class="form-control" required="1" placeholder="Your Name" value="" name="contact_name"></div>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-4  text-right" for="contact_email">Email: </label>
+                        <div class="col-sm-5"><input type="email" class="form-control" required="1" placeholder="Your Email" value="" name="contact_email"></div>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-4  text-right" for="contact_mobile">Mobile: </label>
+                        <div class="col-sm-5"><input type="text" class="form-control" required="1" placeholder="Your Mobile" value="" name="contact_mobile"></div>
+                    </div>
+                    <div class="row" style="display: block;">
+                        <label class="col-sm-4 text-right" for="contact_property_address">Property Address: </label>
+                        <div class="col-sm-5"><input type="text" class="form-control" placeholder="Property Address" value="" name="contact_property_address"></div>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-4 text-right" for="contact_message">Message: </label>
+                        <div class="col-sm-5"><textarea required="1" class="form-control" placeholder="Please leave your message." rows="6" cols="40" name="contact_message"></textarea></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Submit Query</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+    <script type="text/javascript">
+        $(function () {
+            $('#navSell').click(function () {
+                $('#modalSell').modal('show');
+            });
+        });
+    </script>
+
+
+    @RenderSection("scripts", required: false)
+
+
+</body>
+</html>
