@@ -1,4 +1,7 @@
-﻿using System.Net.Mail;
+﻿using System;
+using System.Configuration;
+using System.Net.Mail;
+using System.Runtime.CompilerServices;
 using System.Web.Mvc;
 
 namespace BoutiqueEstate.Controllers
@@ -7,33 +10,33 @@ namespace BoutiqueEstate.Controllers
     {
         //
         // GET: /SendMailer/ 
-       
-        //[HttpPost]
-        //public ViewResult Index(SendMail.Models.Mail _objModelMail)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        MailMessage mail = new MailMessage();
-        //        mail.To.Add(_objModelMail.To);
-        //        mail.From = new MailAddress(_objModelMail.From);
-        //        mail.Subject = _objModelMail.Subject;
-        //        string Body = _objModelMail.Body;
-        //        mail.Body = Body;
-        //        mail.IsBodyHtml = true;
-        //        SmtpClient smtp = new SmtpClient();
-        //        smtp.Host = "smtp.gmail.com";
-        //        smtp.Port = 587;
-        //        smtp.UseDefaultCredentials = false;
-        //        smtp.Credentials = new System.Net.NetworkCredential
-        //        ("username", "password");// Enter seders User name and password
-        //        smtp.EnableSsl = true;
-        //        smtp.Send(mail);
-        //        return View("Index", _objModelMail);
-        //    }
-        //    else
-        //    {
-        //        return View();
-        //    }
-        //}
+
+        [HttpPost]
+        public ViewResult Index(string from, string to, string subject, string body )
+        {
+            if (String.IsNullOrEmpty(from)) return View("Error");
+            if (String.IsNullOrEmpty(to)) return View("Error");
+            if (String.IsNullOrEmpty(subject) && String.IsNullOrEmpty(body)) return View("Error");
+      
+            
+            var mail = new MailMessage();
+            mail.To.Add(to);
+            mail.From = new MailAddress(from);
+            mail.Subject = subject;
+            mail.Body = body;
+            mail.IsBodyHtml = true;
+            var smtp = new SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                UseDefaultCredentials = false,
+                Credentials = new System.Net.NetworkCredential(ConfigurationManager.AppSettings["EmailUsername"], ConfigurationManager.AppSettings["EmailPassword"]),
+                EnableSsl = true
+            };
+            smtp.Send(mail);
+            return View("Error");
+            
+          
+        }
     }
 }
