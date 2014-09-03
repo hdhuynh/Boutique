@@ -19,13 +19,23 @@
                 <span class="vcenter" style="font-size: 2em; color: #B9A98F;">Boutique </span>
                 <span class="vcenter" style="font-size: 1.2em; color: #888; margin-left: 10px; margin-top: 5px">Estate Agency</span>
             </div>
-            <div class="pull-right vcenter" style="margin-right:30px; width: 250px; margin-top:30px">
+            <div class="pull-right vcenter" style="margin-right:30px; width: 250px; margin-top:10px">
                 <div class="row">
-                    <span class="glyphicon glyphicon-phone-alt white"></span><span class="white" style="margin-left: 8px">0433 920 603</span> <span class="white" style="margin-left: 15px">0433 303 255</span>
+                    <span class="glyphicon glyphicon-home white"></span><span class="white" style="margin-left: 8px">53 Somerset Drive, Dandenong North</span>
                 </div>
                 <div class="row">
-                    <span class="glyphicon glyphicon-home white"></span><span class="white" style="margin-left: 8px">53 Somerset Dr, Dandenong North</span>
+                    <span class="glyphicon glyphicon-phone-alt white"></span><span class="white" style="margin-left: 8px">Tel: &nbsp;(03) 9795 8889</span>
                 </div>
+                <div class="row">
+                    <span class="glyphicon glyphicon-phone-alt white"></span><span class="white" style="margin-left: 8px">Fax: (03) 9795 8869</span>
+                </div>
+                <div class="row">
+                    <a href="http://facebook.com/boutiqueestate">
+                        <img src="~/Images/fb.png" alt="f" style="width:10px" />
+                        <span class="white" style="margin-left: 8px">facebook.com/boutiqueestate</span>
+                    </a>
+                </div>
+                
             </div>
         </div>
 
@@ -70,7 +80,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p class="text-right">&copy; @DateTime.Now.Year - Designed by iBusinis</p>
+            <p class="text-right">&copy; @DateTime.Now.Year - Designed by iBusinis  <br/>Tel: 0423 333 725</p>
         </footer>
     </div>
 
@@ -108,7 +118,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button id="btnSubmitEnquiry" type="button" class="btn btn-primary">Submit Query</button>
+                    <a href="mailto:reception@BoutiqueEstate.com.au"><button id="btnSubmitEnquiry" type="button" class="btn btn-primary">Submit Query</button></a>
                 </div>
             </div>
         </div>
@@ -128,7 +138,9 @@
                 $('#modalEnquiry .modal-title').html('Lease Enquiry');
                 $('#modalEnquiry').modal('show');
             });
-            //$('#btnSubmitEnquiry').click(function () { $('#modalEnquiry').modal('hide'); });
+            $('#btnSubmitEnquiry').click(function() {
+                 $('#modalEnquiry').modal('hide');
+            });
 
 
         });
